@@ -6,8 +6,8 @@ import { BsFillLightningChargeFill } from "react-icons/bs";
 export const MIddleNavbar = () => {
   return (
     <>
-    <div className='border flex h-10 pl-20 gap-1 items-center'>
-        <div className='w-[14em] bg-[#F1F4F6] px-2 flex items-center justify-between'>
+    <div className='border flex h-11 pl-20 pr-10 gap-1 items-center'>
+        <div className='w-[14em] bg-[#F1F4F6] px-2 h-8 flex items-center justify-between'>
             <IoLocationSharp className='h-4 w-4 text-gray-500 bg-[#F1F4F6]'/>
             <select name="Kolkata" id="" className='location w-fit font-semibold bg-[#F1F4F6]'>
                 <option value="">Kolkata</option>
@@ -24,17 +24,18 @@ export const MIddleNavbar = () => {
             <AiOutlineAim className='text-gray-500 bg-[#F1F4F6]'/>
         </div>
 
-        <div className='border w-[30em] bg-[#F1F4F6] flex items-center'>
+        <div className='w-[40em] h-8 bg-[#F1F4F6] flex items-center'>
             <input className='bg-[#F1F4F6] w-full h-full ml-4' placeholder='Search for Medicines and Health Products' type="search"/>
-            <IoSearchOutline className='absolute right-[48em] bg-[#F1F4F6]'/>
+            <IoSearchOutline className='absolute right-[37em] bg-[#F1F4F6]'/>
         </div>
-        <div>
-            <div className='flex items-center'>
-                <BsFillLightningChargeFill/>
-                <span>QUICK BUY! Get 15% off on medicines*</span>
-                <button>Quick order</button>
+        <div className='ml-20'>
+            <div className='flex w-full items-center gap-16'>
+                <div className='flex items-center'>
+                    <BsFillLightningChargeFill className='text-[#9F5650] h-3 w-3'/>
+                    <p className='text-sm'>QUICK BUY! Get 15% off on medicines*</p>
+                </div>
+                <button className=' bg-[#FF6F61] px-7 text-white py-1.5 rounded-md'>Quick order</button>
             </div>
-
         </div>
     </div>
     </>
