@@ -28,7 +28,7 @@ export const MIddleNavbar = () => {
             <input className='bg-[#F1F4F6] w-full h-full ml-4' placeholder='Search for Medicines and Health Products' type="search"/>
             <IoSearchOutline className='absolute right-[37em] bg-[#F1F4F6]'/>
         </div>
-        <div className='ml-20'>
+        <div className='ml-16'>
             <div className='flex w-full items-center gap-16'>
                 <div className='flex items-center'>
                     <BsFillLightningChargeFill className='text-[#9F5650] h-3 w-3'/>

@@ -95,7 +95,7 @@ export const ImagesMaping = () => {
       <p className=" border-b-2 h-20 flex items-center justify-center text-xl font-medium text-[#666666]">
         Tata 1mg: India’s Leading Online Pharmacy & Healthcare Platform
       </p>
-      <div className="px-32 py-8 bg-[#F6F6F6]">
+      <div className="px-32 pt-8 bg-[#F6F6F6]">
         <img src="/bnner.webp" alt="" />
       </div>
       
