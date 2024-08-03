@@ -6,7 +6,10 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    background-color: white;
+    /* background-color: white; */
+}
+body{
+  background-color: white;
 }
 
 .location {

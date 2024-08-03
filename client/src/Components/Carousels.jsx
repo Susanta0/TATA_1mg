@@ -49,6 +49,7 @@ export const Carousels = ({ data, heading, seeall }) => {
           <Slider {...settings}>
             {data.map((ele) => (
               <div
+              key={ele.id}
                 className="h-[14em] hover:border-2 hover:shadow-2xl bg-[#FFFFFF] p-[26px] rounded-md"
               >
                 <div className="flex gap-4 flex-col items-center">

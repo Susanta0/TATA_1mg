@@ -1,8 +1,10 @@
+import { useDisclosure } from '@chakra-ui/react';
 import React from 'react'
 import { PiShoppingCart } from "react-icons/pi";
+import { SignUp } from './SignUp';
 
 export const UpperNavbar = () => {
-
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <>
@@ -19,15 +21,18 @@ export const UpperNavbar = () => {
         </div>
         <div className=' gap-10 flex items-center' >
             <div className='flex items-center  space-x-2'>
-            <button className='text-sm'>Login</button>
+            <button onClick={onOpen} className='text-sm'>Login</button>
+            {/* {onOpen && <SignUp isOpen={isOpen} onClose={onClose}/>} */}
             <hr className='h-4 border border-black' />
-            <button className='text-sm'>Sign Up</button>
+            <button onClick={onOpen} className='text-sm'>Sign Up</button>
             </div>
             <p className='text-sm'>Offers</p>
             <PiShoppingCart className='h-6 w-6'/>
             <p className='text-sm'>Need Help?</p>
         </div>
     </div>
+    {onOpen && <SignUp isOpen={isOpen} onClose={onClose}/>}
     </>
   )
 }
+

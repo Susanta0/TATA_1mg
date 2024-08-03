@@ -84,6 +84,7 @@ export const ImagesMaping = () => {
             return <img key={index} src={image.imgURL} alt={image.imgAlt} />;
           })}
         </SlidersImages>
+        
         <div className="w-[35%] ">
           <img
             className=""

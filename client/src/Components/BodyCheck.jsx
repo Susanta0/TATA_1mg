@@ -49,6 +49,7 @@ export const BodyCheck = ({ data, heading, seeall }) => {
           <Slider {...settings}>
             {data.map((ele) => (
               <div
+              key={ele.id}
                 className="hover:drop-shadow-md cursor-pointer border border-gray-200 bg-[#FFFFFF] py-3 pl-4  rounded-md"
               >
                 <div className=" relative flex flex-col gap-10 ">
