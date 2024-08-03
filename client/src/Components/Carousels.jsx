@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { Button, Text } from "@chakra-ui/react";
 import React from "react";
 import Slider from "react-slick";
-export const Carousels = ({ data,heading }) => {
+export const Carousels = ({ data, heading, seeall }) => {
   var settings = {
     infinite: false,
     speed: 500,
@@ -40,8 +40,10 @@ export const Carousels = ({ data,heading }) => {
   return (
     <>
       <div className="bg-[#FFFFFF] w-[100%] m-auto">
-        <div className="px-[8em] pt-8 pb-2 bg-[#F6F6F6]">
+        <div className="flex justify-between items-center px-[8em] pt-8 pb-2 bg-[#F6F6F6]">
           <h1 className="font-normal text-lg bg-[#F6F6F6]">{heading}</h1>
+          {!seeall=="" && <p className='text-xs font-bold text-white px-2 py-1 rounded-md bg-[#FF6F61]'>{seeall}</p>}
+          
         </div>
         <div className="bg-white shadow-md px-[8em]">
           <Slider {...settings}>

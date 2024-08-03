@@ -1,0 +1,4 @@
+.health .slick-slider .slick-list .slick-track {
+    display: flex;
+    gap: 24px;
+  }
