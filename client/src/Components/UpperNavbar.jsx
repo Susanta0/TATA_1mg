@@ -1,7 +1,7 @@
 import { useDisclosure } from '@chakra-ui/react';
 import React from 'react'
 import { PiShoppingCart } from "react-icons/pi";
-import { SignUp } from './SignUp';
+import { SignUpForm } from './SignUpForm';
 
 export const UpperNavbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -31,7 +31,7 @@ export const UpperNavbar = () => {
             <p className='text-sm'>Need Help?</p>
         </div>
     </div>
-    {onOpen && <SignUp isOpen={isOpen} onClose={onClose}/>}
+    {onOpen && <SignUpForm isOpen={isOpen} onClose={onClose}/>}
     </>
   )
 }
