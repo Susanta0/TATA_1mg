@@ -1,4 +1,5 @@
 const express = require("express")
+const cors=require("cors")
 const connected = require("./src/config/db")
 const userRouter = require("./src/router/Users/user.router")
 const server = express()
@@ -6,8 +7,8 @@ require("dotenv").config()
 const PORT= process.env.PORT || 8000
 
 
+server.use(cors())
 server.use(express.json())
-
 // Frontend Home Page
 server.get("/", (req, res)=>{
     res.send("This is the Home Page")
