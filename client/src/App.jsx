@@ -1,10 +1,11 @@
-import { Home } from "./Pages/Home"
+
+import { AllRouter } from "./Routes/AllRouter"
 
 function App() {
 
   return (
     <>
-    <Home/>
+    <AllRouter/>
     </>
   )
 }

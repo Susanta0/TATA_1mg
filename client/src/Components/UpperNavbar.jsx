@@ -22,7 +22,6 @@ export const UpperNavbar = () => {
         <div className=' gap-10 flex items-center' >
             <div className='flex items-center  space-x-2'>
             <button onClick={onOpen} className='text-sm'>Login</button>
-            {/* {onOpen && <SignUp isOpen={isOpen} onClose={onClose}/>} */}
             <hr className='h-4 border border-black' />
             <button onClick={onOpen} className='text-sm'>Sign Up</button>
             </div>

@@ -1,6 +1,54 @@
+import axios from "axios";
+import React, { useState } from "react";
+import { useToast } from "@chakra-ui/react";
+
 export const SignUp = ({ toggleForms }) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showLogin, setShowLogin] = useState(false); // state to manage login component visibility
+  const [showRegister, setShowRegister] = useState(true); // state to manage register form visibility
+
+  const toast = useToast();
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios({
+        method: "POST",
+        url: "https://tata-1mg-vbxx.onrender.com/user/register",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: {
+          name: name,
+          email: email,
+          password: password,
+        },
+      });
+      console.log(res.data);
+      toast({
+        title: "Registration successful",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+      });
+      setShowLogin(true);
+      setShowRegister(false);
+    } catch (error) {
+      toast({
+        title: "Registration failed",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+      });
+      console.log(error);
+    }
+  };
+
+
   return (
     <>
+    {showRegister && !showLogin &&(
       <div className="relative flex flex-col text-gray-700 bg-transparent shadow-none rounded-xl bg-clip-border">
         <h4 className="block font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
           Sign Up
@@ -15,6 +63,11 @@ export const SignUp = ({ toggleForms }) => {
             </h6>
             <div className="relative h-11 w-full min-w-[200px]">
               <input
+              required
+              type="text"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
                 placeholder="Jhon"
                 className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent !border-t-blue-gray-200 bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:!border-t-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
               />
@@ -25,6 +78,11 @@ export const SignUp = ({ toggleForms }) => {
             </h6>
             <div className="relative h-11 w-full min-w-[200px]">
               <input
+               required
+               type="text"
+               name="email"
+               value={email}
+               onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@mail.com"
                 className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent !border-t-blue-gray-200 bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:!border-t-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
               />
@@ -35,6 +93,10 @@ export const SignUp = ({ toggleForms }) => {
             </h6>
             <div className="relative h-11 w-full min-w-[200px]">
               <input
+               required
+               name="password"
+               value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 placeholder="********"
                 className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent !border-t-blue-gray-200 bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:!border-t-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -87,6 +149,7 @@ export const SignUp = ({ toggleForms }) => {
           <button
             className="mt-6 block w-full select-none rounded-lg bg-[#FF6F61] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="button"
+            onClick={handleRegister}
           >
             sign up
           </button>
@@ -102,12 +165,60 @@ export const SignUp = ({ toggleForms }) => {
           </p>
         </form>
       </div>
+    )}
+      
+      {showLogin && <Login/>}
     </>
   );
 };
 
 
+
+import { useNavigate } from "react-router-dom";
 export const Login = ({ toggleForms }) => {
+
+  const [email, setEmail]=useState("")
+  const [password, setPassword]=useState("")
+  const [isLoggedIn, setIsLoggedIn] = useState(false) 
+  
+  const toast = useToast();
+  const navigate= useNavigate()
+
+  const handleSubmit= async(e)=>{
+    e.preventDefault()
+    try {
+      const res = await axios({
+        method: "POST",
+        url: "https://tata-1mg-vbxx.onrender.com/user/login",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: {
+          email: email,
+          password: password,
+        },
+      });
+      console.log(res.data);
+      localStorage.setItem("token",res.data.access_Token)
+      toast({
+        title: "login successful",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+      });
+      navigate(`/`)
+      setIsLoggedIn(true)
+    } catch (error) {
+      toast({
+        title: "wrong information",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+      });
+      console.log(error);
+    }
+  }
+
   return (
     <>
       <div className="relative flex flex-col text-gray-700 bg-transparent shadow-none rounded-xl bg-clip-border">
@@ -124,6 +235,9 @@ export const Login = ({ toggleForms }) => {
             </h6>
             <div className="relative h-11 w-full min-w-[200px]">
               <input
+              type="text" name="email" 
+              value={email} 
+              onChange={(e)=> setEmail(e.target.value)}
                 placeholder="name@mail.com"
                 className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent !border-t-blue-gray-200 bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:!border-t-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
               />
@@ -134,6 +248,7 @@ export const Login = ({ toggleForms }) => {
             </h6>
             <div className="relative h-11 w-full min-w-[200px]">
               <input
+              name="password" value={password} onChange={(e)=> setPassword(e.target.value)}
                 type="password"
                 placeholder="********"
                 className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent !border-t-blue-gray-200 bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:!border-t-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -186,6 +301,7 @@ export const Login = ({ toggleForms }) => {
           <button
             className="mt-6 block w-full select-none rounded-lg bg-[#FF6F61] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="button"
+            onClick={handleSubmit}
           >
             sign in
           </button>
@@ -201,6 +317,7 @@ export const Login = ({ toggleForms }) => {
           </p>
         </form>
       </div>
+      
     </>
   );
 };

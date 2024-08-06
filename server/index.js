@@ -2,6 +2,7 @@ const express = require("express")
 const cors=require("cors")
 const connected = require("./src/config/db")
 const userRouter = require("./src/router/Users/user.router")
+const collagenRouter = require("./src/router/collagen.router")
 const server = express()
 require("dotenv").config()
 const PORT= process.env.PORT || 8000
@@ -17,6 +18,7 @@ server.get("/", (req, res)=>{
 // User Router
 server.use("/user", userRouter)
 
+server.use("/product", collagenRouter)
 // Admin Home Page
 // const adminRouter= require("./src/router/Admin/admin.js")
 // server.use("/admin", adminRouter)
