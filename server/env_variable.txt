@@ -1,1 +1,3 @@
-MONGO_URL=
+MONGO_URL="your database url"
+SECRET_KEY="enter your secret key"
+PORT="your server port"
